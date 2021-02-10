@@ -5,9 +5,6 @@ const dotenv=require("dotenv");
 dotenv.config(); // to use .env variables here
 const PORT=5000;
 
-require("./modals/user");
-app.use(express.json());
-app.use(require("./routes/auth"));
 
 // DATABASE CONNECTION
 mongoose.connect(process.env.MONGODB_URL,{
@@ -22,6 +19,13 @@ mongoose.connection.on("error",(err)=>{
 })
 
 //DATABASE CONNECTION END 
+
+
+require("./modals/user"); //User modal is register here
+require("./modals/post");//Post modal is registerd here
+app.use(express.json());
+app.use(require("./routes/auth"));
+app.use(require("./routes/post"));
 
 app.listen(PORT,()=>{
     console.log(`Server is runnning  at localhost:${PORT}`);

@@ -23,10 +23,11 @@ module.exports=(req,res,next)=>{
                   return res.status(401).json("User not found");
               }
               req.user=savedUser;
+              console.log("User verifed");
+              next()
           }).catch((error)=>{
               console.log(error);
           })
-          next()
      })
 
      
