@@ -13,6 +13,16 @@ const newPostSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  likes: [{ type: ObjectId, ref: "Users" }],
+  comments: [
+    {
+      text: String,
+      postedBy: {
+        type: ObjectId,
+        ref: "Users",
+      },
+    },
+  ],
   postBy: {
     type: ObjectId,
     ref: "Users",
